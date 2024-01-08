@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drag-Drop</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://kit.fontawesome.com/daaaf984b0.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">  
+        <div id="left">
+            <div class="list" draggable="true">
+                <i class="fas fa-rocket"></i>
+                <span>Rocket</span>
+            </div>
+            <div class="list" draggable="true">
+                <i class="fas fa-house"></i>
+                <span>Huis</span>
+            </div>
+            <div class="list" draggable="true">
+                <i class="fas fa-burger"></i>
+                <span>Burger</span>
+            </div>
+            <div class="list" draggable="true">
+                <i class="fas fa-user"></i>
+                <span>Gebruiker</span>
+            </div>
+            
+           
+        </div>
+        <div id="right">
+            
+        </div>
+    </div>
+
+    <script>
+        let lists = document.querySelectorAll('.list');
+        let right = document.querySelector('#right');
+        let left = document.querySelector('#left');
+
+        for(list of lists){
+            list.addEventListener('dragstart' , function(e){
+                // zorgt er voor dat de data van de list wordt meegenomen
+                let selected = e.target;
+                // zorgt er voor dat hij niet terug gaat naar de orginele plek
+                right.addEventListener('dragover' , function(e){
+                    e.preventDefault();
+                })
+                // zorgt er voor dat de list wordt gedropt
+                right.addEventListener('drop' , function(e){
+                    right.appendChild(selected);
+                    selected = null;
+                });
+
+                left.addEventListener('dragover' , function(e){
+                    e.preventDefault();
+                })
+                // zorgt er voor dat de list wordt gedropt
+                left.addEventListener('drop' , function(e){
+                    left.appendChild(selected);
+                    selected = null;
+                })
+            })
+        }
+    </script>
+</body>
+</html>
