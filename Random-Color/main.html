@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random color</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://kit.fontawesome.com/daaaf984b0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <button>DRUK OP MIJ</button>    
+    </div> 
+    <script>
+        // pak de button
+        const button = document.getElementsByTagName('button')[0];
+        // voeg een eventlistener toe
+        button.addEventListener('click', () => {
+        document.body.style.backgroundColor = colors();
+        });
+        // maak een functie die random kleuren genereert
+        function colors() {
+            let colorArray = [];    
+            // maak een loop die 3 keer loopt
+            for(let i =0; i < 3 ; i++){
+                colorArray.push(Math.floor(Math.random() * (255 - 0) + 0));
+            }
+            // rgb -> hex
+            let color = colorArray
+                .map( x => x.toString(16))
+                .join('');
+            // return de kleur
+            return `#${color}`;
+        }
+    </script>
+</body>
+
+</html>
